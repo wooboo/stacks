@@ -85,14 +85,14 @@ services:
     working_dir: "/photoprism"
     volumes:
       ## The *originals* folder contains your original photo and video files (- "C:/Directory:/photoprism/originals"):
-      - "~/Pictures:/photoprism/originals/Pictures"
+      # - "~/Pictures:/photoprism/originals/Pictures"
       ## Multiple folders can be made accessible by mounting them as subfolders of /photoprism/originals:
       # - "D:/Pictures:/photoprism/originals/Pictures"
       # - "E:/Friends:/photoprism/originals/Friends"
       ## You may mount an *import* folder from which files can be transferred to *originals* (optional):
       # - "E:/:/photoprism/import"
       ## Cache, session, thumbnail, and sidecar files will be created in the *storage* folder (never remove):
-      - "./storage:/photoprism/storage"
+      - "storage:/photoprism/storage"
       - "data:/photoprism/originals/photos"
 
     deploy:
@@ -143,3 +143,4 @@ volumes:
   mariadb_data:
     driver: local
   data:
+  storage:
