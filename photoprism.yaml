@@ -85,7 +85,7 @@ services:
     working_dir: "/photoprism"
     volumes:
       ## The *originals* folder contains your original photo and video files (- "C:/Directory:/photoprism/originals"):
-      # - "~/Pictures:/photoprism/originals/Pictures"
+      - "~/Pictures:/photoprism/originals/Pictures"
       ## Multiple folders can be made accessible by mounting them as subfolders of /photoprism/originals:
       # - "D:/Pictures:/photoprism/originals/Pictures"
       # - "E:/Friends:/photoprism/originals/Friends"
