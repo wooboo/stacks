@@ -7,7 +7,7 @@ services:
       - PGID=1000
       - TZ=Europe/Warsaw
     volumes:
-      - heimdall_data:/config
+      - data:/config
     ports:
       - target: 80
         published: 80
@@ -21,4 +21,4 @@ services:
       placement:
         constraints: [node.role == manager]
 volumes:
-  heimdall_data:
+  data:
