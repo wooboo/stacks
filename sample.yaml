@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  bc-prod:
+    image: bcartifacts/cosmobc:onprem-18.0.23013.23795-{LANG}
+    environment:
+      - accept_eula=y
+      ...
+    networks:
+      - traefik-public
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - traefik.enable=true
+        ...
+        
+  bc-test:
+    image: bcartifacts/cosmobc:onprem-18.1.24822.26330-{LANG}
+    environment:
+      - accept_eula=y
+      ...
+    networks:
+      - traefik-public
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - traefik.enable=true
+        ...
+
+networks:
+  traefik-public:
+    external: true

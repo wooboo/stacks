@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  heimdall:
+    image: lscr.io/linuxserver/heimdall
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Warsaw
+    volumes:
+      - heimdall_data:/config
+    ports:
+      - 80:80
+      - 443:443
+volumes:
+  heimdall_data:
+  
