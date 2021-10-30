@@ -94,7 +94,8 @@ services:
       ## Cache, session, thumbnail, and sidecar files will be created in the *storage* folder (never remove):
       - "storage:/photoprism/storage"
       - "data:/photoprism/originals/photos"
-
+    networks:
+      - photoprism
     deploy:
       mode: replicated
       replicas: 1
@@ -118,7 +119,8 @@ services:
       MYSQL_DATABASE: photoprism
       MYSQL_USER: photoprism
       MYSQL_PASSWORD: insecure
-
+    networks:
+      - photoprism
     deploy:
       mode: replicated
       replicas: 1
@@ -144,3 +146,6 @@ volumes:
     driver: local
   data:
   storage:
+networks:
+  photoprism:
+    external: true
