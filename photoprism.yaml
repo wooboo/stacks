@@ -111,6 +111,10 @@ services:
     ## --lower-case-table-names=1 stores tables in lowercase and compares them in a case-sensitive manner
     ## see https://mariadb.com/kb/en/server-system-variables/#lower_case_table_names
     command: mysqld --lower-case-table-names=1 --transaction-isolation=READ-COMMITTED --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=120
+    ports:
+      - target: 3306
+        published: 3306
+        mode: host
     volumes:
       - "mariadb_data:/var/lib/mysql" # Never remove, the named volume "mariadb_data" is defined at the bottom
     environment:
