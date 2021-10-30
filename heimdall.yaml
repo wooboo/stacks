@@ -15,5 +15,10 @@ services:
       - target: 443
         published: 443
         mode: host
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
 volumes:
   heimdall_data:
