@@ -148,4 +148,5 @@ volumes:
   storage:
 networks:
   photoprism:
-    external: true
+    driver: overlay
+    attachable: true
