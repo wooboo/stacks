@@ -12,7 +12,9 @@ services:
     volumes:
       - double-take_data:/.storage
     ports:
-      - 3000:3000
+      - target: 3000
+        published: 3000
+        mode: host
     deploy:
       mode: replicated
       replicas: 1
@@ -46,7 +48,10 @@ services:
       - DEEPSTACK_CUSTOM_MODEL=fire
       - DEEPSTACK_UI_DEBUG_MODE=True
     ports:
-      - '8501:8501'
+
+      - target: 8501
+        published: 8501
+        mode: host    
     deploy:
       mode: replicated
       replicas: 1
