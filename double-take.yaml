@@ -28,6 +28,9 @@ services:
       - '5000:5000'
     environment:
       - VISION-DETECTION=True
+      - MODE=High
+      - VISION-SCENE=True
+      - VISION-FACE=True
       - API-KEY=""
     volumes:
       - deepstack_data:/modelstore/detection
