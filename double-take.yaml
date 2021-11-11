@@ -3,7 +3,8 @@ version: '3.7'
 volumes:
   double-take_data:
   deepstack_data:
-
+  trainder_db:
+  trainder_uploads:
 services:
   double-take:
     container_name: double-take
@@ -52,6 +53,26 @@ services:
       - target: 8501
         published: 8501
         mode: host    
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+  deepstack_trainer:
+    image: techblog/deepstack-trainer
+    container_name: deepstack_trainer
+    privileged: true
+    restart: always
+    environment:
+      - DEEPSTACK_HOST_ADDRESS=tasks.deepstack
+      - MIN_CONFIDANCE=0.75
+    ports:
+      - target: 8080
+        published: 8502
+        mode: host  
+    volumes:
+      - trainder_db:/opt/trainer/db #Database storing the uploaded photos data (Filename, Person name, Date).
+      - trainder_uploads:/opt/trainer/photos/uploads #Phisical path for storing the images
     deploy:
       mode: replicated
       replicas: 1
