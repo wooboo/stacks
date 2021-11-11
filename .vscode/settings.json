@@ -21,5 +21,8 @@
         "titleBar.inactiveBackground": "#f9062a99",
         "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "peacock.color": "#f9062a"
+    "peacock.color": "#f9062a",
+    "files.associations": {
+        "*.yaml": "home-assistant"
+    }
 }
