@@ -1,7 +1,8 @@
 version: '3.7'
 
 volumes:
-  double-take:
+  double-take_data:
+  deepstack_data:
 
 services:
   double-take:
@@ -9,6 +10,45 @@ services:
     image: jakowenko/double-take
     restart: unless-stopped
     volumes:
-      - double-take:/.storage
+      - double-take_data:/.storage
     ports:
       - 3000:3000
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+  deepstack:
+    container_name: deepstack
+    restart: unless-stopped
+    image: deepquestai/deepstack
+    ports:
+      - '5000:5000'
+    environment:
+      - VISION-DETECTION=True
+      - API-KEY=""
+    volumes:
+      - deepstack_data:/modelstore/detection
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+  deepstack_ui:
+    container_name: deepstack_ui
+    restart: unless-stopped
+    image: deepstack-ui
+    environment: 
+      - DEEPSTACK_IP=deepstack
+      - DEEPSTACK_PORT=5000
+      - DEEPSTACK_API_KEY=""
+      - DEEPSTACK_TIMEOUT=20
+      - DEEPSTACK_CUSTOM_MODEL=fire
+      - DEEPSTACK_UI_DEBUG_MODE=True
+    ports:
+      - '8501:8501'
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
