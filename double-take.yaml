@@ -64,7 +64,7 @@ services:
     privileged: true
     restart: always
     environment:
-      - DEEPSTACK_HOST_ADDRESS=tasks.deepstack
+      - DEEPSTACK_HOST_ADDRESS=http://tasks.deepstack:5000
       - MIN_CONFIDANCE=0.75
     ports:
       - target: 8080
