@@ -11,8 +11,6 @@ services:
     restart: unless-stopped
     volumes:
       - double-take_data:/.storage
-    links:
-      - deepstack:deepstack
     ports:
       - target: 3000
         published: 3000
@@ -42,10 +40,8 @@ services:
     container_name: deepstack_ui
     restart: unless-stopped
     image: robmarkcole/deepstack-ui:latest
-    links:
-      - deepstack:deepstack
     environment: 
-      - DEEPSTACK_IP=double-take_deepstack
+      - DEEPSTACK_IP=tasks.deepstack
       - DEEPSTACK_PORT=5000
       - DEEPSTACK_API_KEY=""
       - DEEPSTACK_TIMEOUT=20
